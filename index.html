@@ -3,17 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logo1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo1.png">
+    <link rel="manifest" href="logo1.png">
+    <meta name="theme-color" content="#ffffff">
 <title>Fırat İnşaat</title>
 
-<link rel="icon" href="logo1.png">
+<link rel="icon" type="image/png" href="logo1.png">
 
 <style>
+
 /* GENEL */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Helvetica Neue', Arial, sans-serif;
 }
 
 body{
@@ -22,19 +29,66 @@ body{
     overflow-x:hidden;
 }
 
-a{ text-decoration:none; }
+/* ===================== */
+/* INTRO */
+/* ===================== */
 
-/* NAVBAR */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#ffffff,#f4f7f6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.intro-content{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.intro-logo{
+    width:110px;
+    opacity:0;
+    transform:translateX(-80px);
+    animation:logoSlide 1.2s ease forwards 0.5s;
+}
+
+.intro-text{
+    font-size:2.2rem;
+    font-weight:700;
+    letter-spacing:3px;
+    opacity:0;
+    transform:translateX(80px);
+    animation:textSlide 1.2s ease forwards 0.8s;
+}
+
+@keyframes logoSlide{
+    to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes textSlide{
+    to{opacity:1; transform:translateX(0);}
+}
+
+/* ===================== */
+/* NAVBAR (SADECE RENKLER GÜNCELLENDİ) */
+/* ===================== */
+
 header{
-    background:#fff;
+    background: #1a1e21; /* Navbar arka planı şık koyu füme/antrasit yapıldı */
     padding:15px 10%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid #eee;
+    border-bottom: 2px solid #2d3238; /* Alt çizgi rengi yumuşatıldı */
     position:sticky;
     top:0;
     z-index:1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); /* Hafif gölge efekti eklendi */
 }
 
 .nav-logo{
@@ -43,11 +97,13 @@ header{
     gap:10px;
 }
 
-.nav-logo img{ height:35px; }
+.nav-logo img{
+    height:35px;
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2)); /* Logonun belirginleşmesi için hafif gölge */
+}
 
-.nav-logo span{
-    font-weight:bold;
-    letter-spacing:1px;
+.nav-logo strong {
+    color: #ffffff; /* Firma adı rengi beyaz yapıldı */
 }
 
 nav ul{
@@ -57,43 +113,49 @@ nav ul{
 }
 
 nav ul li a{
-    color:#666;
-    font-size:14px;
-    transition:.3s;
+    color: #cbd5e1; /* Menü linkleri açık gri yapıldı */
+    font-weight: 500;
+    text-decoration:none;
+    transition:0.3s;
 }
 
-nav ul li a:hover{ color:#ff6600; }
+nav ul li a:hover{
+    color:#ff6600; /* Üzerine gelindiğinde markanın turuncu tonu */
+}
 
+/* ===================== */
 /* HERO */
+/* ===================== */
+
 .hero{
     height:85vh;
-    background:linear-gradient(120deg,#fdfdfd,#f4f7f6);
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     overflow:hidden;
 }
 
-/* ARKA ÇİZGİLER */
+/* ÇİZGİLER */
 .deco-lines{
     position:absolute;
-    width:120px;
-    height:80px;
+    width:150px;
+    height:100px;
     background:repeating-linear-gradient(
         -45deg,
-        #003399,
-        #003399 4px,
+        #ff6600,
+        #ff6600 4px,
         transparent 4px,
-        transparent 8px
+        transparent 10px
     );
-    opacity:.7;
+    opacity:0.3;
     z-index:1;
 }
 
 .line-top{
-    top:12%;
-    right:14%;
+    top:10%;
+    right:12%;
     transform:rotate(15deg);
 }
 
@@ -103,91 +165,113 @@ nav ul li a:hover{ color:#ff6600; }
     transform:rotate(-10deg);
 }
 
-/* HERO İÇERİK */
+/* HERO CONTENT */
 .hero-container{
-    max-width:1100px;
-    width:90%;
     display:flex;
     align-items:center;
-    gap:80px;
+    gap:50px;
+    max-width:1100px;
+    width:90%;
     position:relative;
     z-index:2;
 }
 
 .logo-card{
-    background:#fff;
-    padding:40px;
-    border-radius:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.logo-card img{ width:260px; }
+.logo-card img{
+    width:160px;
+    height: auto;
+}
 
 .content h1{
     font-size:4rem;
     font-weight:800;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .content h2{
     font-size:2rem;
-    color:#888;
-    letter-spacing:5px;
     font-weight:300;
+    color:#e0e0e0;
+    letter-spacing:5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .content p{
-    margin:20px 0 35px;
     font-size:1.2rem;
-    color:#999;
+    color:#ddd;
+    margin:20px 0 35px;
     font-style:italic;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .btn{
     background:#ff6600;
-    color:#fff;
+    color:white;
     padding:14px 35px;
-    border-radius:4px;
     font-weight:bold;
-    font-size:14px;
-    transition:.3s;
+    border-radius:4px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    text-decoration:none;
+    transition:0.3s;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
 }
 
-.btn:hover{ background:#e65c00; }
+.btn:hover{
+    background:#e65c00;
+    transform: translateY(-2px);
+}
 
+/* ===================== */
 /* HAKKIMIZDA */
+/* ===================== */
+
 .about{
     padding:80px 10%;
-    background:#fff;
+    background:white;
 }
 
 .about-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
     max-width:1200px;
     margin:auto;
-    display:flex;
-    gap:60px;
-    align-items:center;
 }
 
 .about-text h2{
     font-size:2.5rem;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 .about-text p{
     font-size:1.1rem;
-    line-height:1.7;
     color:#666;
+    line-height:1.7;
     margin-bottom:30px;
 }
 
 .about-image img{
-    width:100%;
     max-width:500px;
     border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
+/* ===================== */
 /* PROJELER */
+/* ===================== */
+
 .projects{
     padding:80px 10%;
     background:#f8f9fa;
@@ -206,16 +290,12 @@ nav ul li a:hover{ color:#ff6600; }
 }
 
 .project-card{
-    background:#fff;
+    background:white;
     border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
     overflow:hidden;
     text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.project-card:hover{
-    transform:translateY(-10px);
+    transition:0.3s;
 }
 
 .project-card img{
@@ -224,10 +304,22 @@ nav ul li a:hover{ color:#ff6600; }
     object-fit:cover;
 }
 
-.project-card h3{ margin:20px 0 10px; }
-.project-card p{ color:#666; margin-bottom:20px; }
+.project-card h3{
+    margin:20px 0 10px;
+}
+
+.project-card p{
+    margin-bottom:20px;
+    color:#666;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(0,0,0,0.1);
+}
 
 /* MOBİL */
+
 @media(max-width:900px){
 
     header{
@@ -235,62 +327,49 @@ nav ul li a:hover{ color:#ff6600; }
         gap:15px;
     }
 
-    .hero-container{
-        flex-direction:column;
-        text-align:center;
-        gap:40px;
-    }
-
-    .content h1{ font-size:2.5rem; }
-
+    .hero-container,
     .about-container{
         flex-direction:column;
         text-align:center;
-        gap:40px;
     }
 
     .projects-grid{
         grid-template-columns:1fr;
     }
 
-    /* MOBİL ÇİZGİLER */
-    .deco-lines{
-        width:80px;
-        height:50px;
-        opacity:.4;
-    }
-
-    .line-top{
-        top:6%;
-        right:6%;
-    }
-
-    .line-bottom{
-        bottom:6%;
-        left:6%;
+    .content h1{
+        font-size:2.5rem;
     }
 }
+
 </style>
 </head>
-
 <body>
+
+<div id="intro">
+    <div class="intro-content">
+        <img src="logo1.png" class="intro-logo">
+        <div class="intro-text">FIRAT İNŞAAT</div>
+    </div>
+</div>
 
 <header>
     <div class="nav-logo">
         <img src="logo1.png">
-        <span>FIRAT İNŞAAT</span>
+        <strong>FIRAT İNŞAAT</strong>
     </div>
     <nav>
         <ul>
-            <li><a href="index.html">Ana Sayfa</a></li>
-            <li><a href="hakkimizda.html">Hakkımızda</a></li>
-            <li><a href="projelerimiz.html">Projelerimiz</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Hakkımızda</a></li>
+            <li><a href="#">Projelerimiz</a></li>
+            <li><a href="#">İletişim</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero">
+
     <div class="deco-lines line-top"></div>
     <div class="deco-lines line-bottom"></div>
 
@@ -302,20 +381,18 @@ nav ul li a:hover{ color:#ff6600; }
             <h1>FIRAT İNŞAAT</h1>
             <h2>İNŞAAT</h2>
             <p>Geleceği Güvenle İnşa Ediyoruz</p>
-            <a href="projelerimiz.html" class="btn">Projeleri Keşfet</a>
+            <a href="#" class="btn">Projeleri Keşfet</a>
         </div>
     </div>
+
 </section>
 
 <section class="about">
     <div class="about-container">
         <div class="about-text">
             <h2>Hakkımızda</h2>
-            <p>
-                Fırat İnşaat olarak modern mimari, kalite ve güveni
-                bir arada sunuyoruz.
-            </p>
-            <a href="hakkimizda.html" class="btn">Daha Fazla</a>
+            <p>Fırat İnşaat olarak kalite, güven ve estetiği bir arada sunuyoruz. Modern mimari anlayışımızla geleceği inşa ediyoruz.</p>
+            <a href="#" class="btn">Daha Fazla</a>
         </div>
         <div class="about-image">
             <img src="about.jpg">
@@ -329,20 +406,35 @@ nav ul li a:hover{ color:#ff6600; }
         <div class="project-card">
             <img src="project1.jpg">
             <h3>Proje 1</h3>
-            <p>Açıklama</p>
+            <p>Modern yaşam alanı</p>
         </div>
         <div class="project-card">
             <img src="project2.jpg">
             <h3>Proje 2</h3>
-            <p>Açıklama</p>
+            <p>Prestijli konut projesi</p>
         </div>
         <div class="project-card">
             <img src="project3.jpg">
             <h3>Proje 3</h3>
-            <p>Açıklama</p>
+            <p>Yüksek kalite mimari</p>
         </div>
     </div>
 </section>
 
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        const intro = document.getElementById("intro");
+        intro.style.transition="opacity 0.8s ease";
+        intro.style.opacity="0";
+        setTimeout(function(){
+            intro.style.display="none";
+        },800);
+    },2500);
+});
+</script>
+
 </body>
 </html>
+
+```
